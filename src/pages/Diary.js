@@ -10,7 +10,12 @@ import Button from "../components/Button";
 const Diary = () => {
   const { id } = useParams();
   const diaryList = useContext(DiaryStateContent);
-  const [data, setData] = useState()
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName('title')[0];
+    titleElement.innerHTML = ` 감정일기장 - ${id}번 일기`;
+  },[])
 
   const navigate = useNavigate();
 

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import Button from "./Button"
 import { useNavigate } from "react-router-dom"
 import DiaryItem from "./DiaryItem"
@@ -14,7 +14,9 @@ const filterOptionList = [
   { value : "bad" , name : "안 좋은 감정만" },
 ]
 
-const ControlMenu = ({value,onChange,optionList}) => {
+// React.memo : 전달받은 prop이 변하지 않으면, 랜더링되지 않음
+
+const ControlMenu = React.memo(({value,onChange,optionList}) => {
   return(
   <select 
     className="ControlMenu" 
@@ -30,7 +32,7 @@ const ControlMenu = ({value,onChange,optionList}) => {
     }
   </select>
   )
-}
+})
 
 
 const DiaryList = ({diaryList}) => {

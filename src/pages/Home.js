@@ -27,8 +27,9 @@ const Home = () => {
       ).getTime();
 
       setData(
-        diaryList.filter( it => firstDay <= it.date && it.date <= lastDay)
+        diaryList.filter( it => (firstDay <= it.date) &&( it.date <= lastDay))
       );
+  
     }
   },[diaryList, curDate])
 
@@ -47,7 +48,7 @@ const Home = () => {
         leftChild={<Button text={"<"} onClick={decreaseMonth}/>}
         rightChild={<Button text={">"} onClick={increaseMonth}/>}
        />
-       <DiaryList diaryList={diaryList}/>
+       <DiaryList diaryList={data}/>
     </div>
   )
 }
