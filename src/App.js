@@ -37,40 +37,6 @@ const reducer = (state,action) => {
 export const DiaryStateContent = React.createContext();
 export const DiaryDispatchContent = React.createContext();
 
-// const dummyData = [
-//   {
-//     id : 1,
-//     emotion : 1,
-//     content : "오늘의 일기 1번",
-//     date : 1688975750752
-//   },
-//   {
-//     id : 2,
-//     emotion : 2,
-//     content : "오늘의 일기 2번",
-//     date : 1688875750752
-//   },
-//   {
-//     id : 3,
-//     emotion : 3,
-//     content : "오늘의 일기 3번",
-//     date : 1688657750752
-//   },
-//   {
-//     id : 4,
-//     emotion : 4,
-//     content : "오늘의 일기 4번",
-//     date : 1688975987752
-//   },
-//   {
-//     id : 5,
-//     emotion : 5,
-//     content : "오늘의 일기 5번",
-//     date : 1688775757982
-//   }
-// ]
-
-
 function App() {
 
   const [data,dispatch] = useReducer(reducer,[]);
@@ -81,8 +47,11 @@ function App() {
       const diaryList = JSON.parse(localData).sort(
         (a, b) => parseInt(b.id) - parseInt(a.id)
       );
-      dataId.current = parseInt(diaryList[0].id) + 1;
-      dispatch({type : "INIT" , data : diaryList});
+
+      if(diaryList.length >= 1) {
+        dataId.current = parseInt(diaryList[0].id) + 1;
+        dispatch({type : "INIT" , data : diaryList});
+      }
     }
   },[])
 
